@@ -1,0 +1,6 @@
+require 'nokogiri'
+require 'open-uri'
+require_relative 'scrapper'
+require_relative 'fondeadora'
+require_relative 'kickstarter'
+require 'pry'
