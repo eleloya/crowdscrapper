@@ -4,8 +4,17 @@ class Scrapper
     @doc
   end
   
-  def initialize(html)
+  def url
+    @url
+  end
+  
+  def title
+    @doc.title
+  end
+  
+  def initialize(html, url)
     @doc = html
+    @url = url
   end
   
   def amount_asked
@@ -82,6 +91,8 @@ class Scrapper
   
   
   def description
+    puts "Project Title: #{title}"
+    puts "Project URL: #{url}"
     puts "Asked Amount: #{amount_asked}"
     puts "Received Amount: #{amount_received}"
     puts "Number of Backers: #{backers}"

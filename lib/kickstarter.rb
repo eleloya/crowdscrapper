@@ -1,7 +1,7 @@
 class KickStarterProject < Scrapper
   
-  def initialize(html)
-    super(html)
+  def initialize(html, url)
+    super(html, url)
   end
 
   def amount_asked

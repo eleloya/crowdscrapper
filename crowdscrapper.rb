@@ -21,9 +21,9 @@ usage if url.nil?
 doc = Nokogiri::HTML(open(url))
 
 if url.include? "fondeadora"
-  scrap = FondeadoraProject.new(doc)
+  scrap = FondeadoraProject.new(doc, url)
 else
-  scrap = KickStarterProject.new(doc)
+  scrap = KickStarterProject.new(doc, url)
 end
 
 scrap.description
