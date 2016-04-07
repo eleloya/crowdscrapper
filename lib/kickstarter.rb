@@ -5,7 +5,7 @@ class KickStarterProject < Scrapper
   end
 
   def amount_asked
-    @doc.search("//div[@id='pledged']").attr('data-goal').to_s
+    @doc.search("//div[@id='pledged']").attr('data-goal').to_s.to_i
   end
 
   def amount_received
@@ -86,11 +86,23 @@ class KickStarterProject < Scrapper
 
 
   def projects_created
-    projects_created_and_backed.map { |p| p.to_s  }[0]
+    if @doc.to_s.include? "First created"
+      return 1
+    else
+      projects_created_and_backed.map { |p| p.to_s  }[0].to_i
+    end
   end
 
   def projects_backed
-    projects_created_and_backed.map { |p| p.to_s  }[1]
+    if @doc.to_s.include? "0 backed"
+      return 0
+    else
+      if projects_created == 1
+        projects_created_and_backed.map { |p| p.to_s  }[0].to_i
+      else
+        projects_created_and_backed.map { |p| p.to_s  }[1].to_i
+      end
+    end
   end
 
   private
