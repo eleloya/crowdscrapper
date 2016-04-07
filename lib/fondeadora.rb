@@ -3,17 +3,20 @@ class FondeadoraProject < Scrapper
   def initialize(html, url)
     super(html, url)
   end
+  
+  def currency
+    currency = @doc.search("//div[@id='necesita']/div/span[@class='goal']").attr("data-currency").text
+    currency
+  end
 
   def amount_asked
     amount = @doc.search("//div[@id='necesita']/div/span[@class='goal']").attr("data-amount").text
-    currency = @doc.search("//div[@id='necesita']/div/span[@class='goal']").attr("data-currency").text
-    "#{amount} #{currency}"
+    amount.to_i
   end
 
   def amount_received
     amount = @doc.search("//span[@class='pledged']").attr("data-amount").text
-    currency = @doc.search("//span[@class='pledged']").attr("data-currency").text
-    "#{amount} #{currency}"
+    amount.to_i
   end
 
   def amount_average
@@ -26,7 +29,7 @@ class FondeadoraProject < Scrapper
   end
 
   def time_left
-    seconds = @doc.search("//h2[@id='dias_counter']").attr('data-end-time').text.to_i
+    seconds = @doc.search("//div[@id='tiempo']/h2[@data-end-time]").attr('data-end-time').text.to_i
     end_time = Time.at(seconds)
     now_time = Time.now
     (end_time.to_date - now_time.to_date).to_i
@@ -45,7 +48,8 @@ class FondeadoraProject < Scrapper
   end
 
   def photos
-    @doc.search("//div[@id='project-about']/div[@class='contenido']//img").count
+    #The pictures are repeated twice in the code (for the mobile and desktop version)
+    @doc.search("//img[@data-rich-file-id]").count / 2
   end
 
   def videos
