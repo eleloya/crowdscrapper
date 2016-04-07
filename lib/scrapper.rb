@@ -29,6 +29,10 @@ class Scrapper
     "0"
   end
   
+  def currency
+    "USD"
+  end
+  
   def backers
     0
   end
@@ -93,6 +97,7 @@ class Scrapper
   def description
     puts "Project Title: #{title}"
     puts "Project URL: #{url}"
+    puts "Currency: #{currency}"
     puts "Asked Amount: #{amount_asked}"
     puts "Received Amount: #{amount_received}"
     puts "Number of Backers: #{backers}"

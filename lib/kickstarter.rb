@@ -5,11 +5,15 @@ class KickStarterProject < Scrapper
   end
 
   def amount_asked
-    @doc.search("//span[contains(concat(' ', normalize-space(@class), ' '), ' money')]/text()").first.text
+    @doc.search("//div[@id='pledged']").attr('data-goal').to_s
   end
 
   def amount_received
-    @doc.search("//data[@itemprop='Project[pledged]']").text
+    @doc.search("//data[@itemprop='Project[pledged]']").attr('data-value').to_s
+  end
+  
+  def currency
+    @doc.search("//data[@itemprop='Project[pledged]']").attr('data-currency').to_s
   end
 
   def amount_average
@@ -55,12 +59,12 @@ class KickStarterProject < Scrapper
   end
 
   def location
-    loc = @doc.xpath("(//div[@class='NS_projects__category_location'])[last()]/a[1]/text()").to_s
+    loc = @doc.xpath("(//div[contains(concat(' ', normalize-space(@class), ' '), ' NS_projects__category_location ')])[last()]/a[1]/text()").to_s
     loc.gsub(/\n/, '')
   end
 
   def category
-    cat = @doc.xpath("(//div[@class='NS_projects__category_location'])[last()]/a[2]/text()").to_s
+    cat = @doc.xpath("(//div[contains(concat(' ', normalize-space(@class), ' '), ' NS_projects__category_location ')])[last()]/a[2]/text()").to_s
     cat.gsub(/\n/, '')
   end
 
