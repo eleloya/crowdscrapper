@@ -114,8 +114,9 @@ class Scrapper
     puts "Number of rewards: #{rewards}"
     puts "Amount of rewards: #{rewards_amount}"
     puts "Word count in rewards: #{rewards_words}"
-    puts "Projects Created: #{projects_created}"
-    puts "Projects Backed: #{projects_backed}"
+    puts "Projects Created by User: #{projects_created}"
+    puts "Projects Backed by User: #{projects_backed}"
+    puts "Project Starting Date: #{start_date}"
   end
 end
   

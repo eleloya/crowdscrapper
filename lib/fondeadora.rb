@@ -29,7 +29,9 @@ class FondeadoraProject < Scrapper
   end
 
   def time_left
-    seconds = @doc.search("//div[@id='tiempo']/h2[@data-end-time]").attr('data-end-time').text.to_i
+    seconds = @doc.search("//div[@id='tiempo']/h2[@data-end-time]")
+    return 0 if seconds.empty?
+    seconds = seconds.attr('data-end-time').text.to_i
     end_time = Time.at(seconds)
     now_time = Time.now
     (end_time.to_date - now_time.to_date).to_i
@@ -80,6 +82,18 @@ class FondeadoraProject < Scrapper
 
   def rewards_words
     @doc.search("//span[@class='reward_description']").map {|r| r.text.split.size }
+  end
+  
+  def projects_created
+    "N/A"
+  end
+  
+  def projects_backed
+    "N/A"
+  end
+  
+  def start_date
+    "N/A"
   end
 
   # Projects created and backed not implemented
