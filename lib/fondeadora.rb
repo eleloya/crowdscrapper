@@ -1,7 +1,7 @@
 class FondeadoraProject < Scrapper
 
-  def initialize(html, url)
-    super(html, url)
+  def initialize(url)
+    super(url)
   end
   
   def currency

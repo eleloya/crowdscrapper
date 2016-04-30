@@ -12,9 +12,10 @@ class Scrapper
     @doc.title
   end
   
-  def initialize(html, url)
-    @doc = html
+  def initialize(url)
     @url = url
+    @raw = open(url)
+    @doc = Nokogiri::HTML(@raw)
   end
   
   def amount_asked

@@ -17,13 +17,12 @@ end
 url = ARGV[0]
 usage if url.nil?
 
-
-doc = Nokogiri::HTML(open(url))
+doc = open(url)
 
 if url.include? "fondeadora"
-  scrap = FondeadoraProject.new(doc, url)
+  scrap = FondeadoraProject.new(url)
 else
-  scrap = KickStarterProject.new(doc, url)
+  scrap = KickStarterProject.new(url)
 end
 
 scrap.description
