@@ -132,7 +132,6 @@ class Scrapper
     print "|" 
     print rewards_words.to_s[1..-2].gsub("\"","")
     print "\r\n"
-    https://www.kickstarter.com/projects/180695797/enter-the-cave|Enter The Cave by WIFE —|usd|15,000|15,102|189|79|0|Los Angeles, CA|Performances|466|8|3|3|3|10|$15 USD, $25 USD, $30 USD, $50 USD, $100 USD, $250 USD, $500 USD, $1,000 USD, $2,500 USD, $5,000 USD|6, 13, 17, 24, 28, 29, 36, 41, 46, 46
   end
   
   private 
@@ -140,9 +139,11 @@ class Scrapper
   def clean(a)
     a.gsub("|","")
     a.gsub("Fondeadora","")
+    a.gsub("-Kickstarter","")
     a.gsub("Kickstarter","")
     a.gusb("\r", "")
     a.gusb("\n", "")
+    a.strip
   end
 end
   
