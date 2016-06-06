@@ -14,7 +14,7 @@ class Scrapper
   
   def initialize(url)
     @url = url
-    @raw = open(url)
+    @raw = open(URI.encode(url))
     @doc = Nokogiri::HTML(@raw)
   end
   
@@ -137,12 +137,12 @@ class Scrapper
   private 
   
   def clean(a)
-    a.gsub("|","")
-    a.gsub("Fondeadora","")
-    a.gsub("-Kickstarter","")
-    a.gsub("Kickstarter","")
-    a.gsub("\r", "")
-    a.gsub("\n", "")
+    a.gsub!("|","")
+    a.gsub!("Fondeadora","")
+    a.gsub!("—Kickstarter","")
+    a.gsub!("Kickstarter","")
+    a.gsub!("\r", "")
+    a.gsub!("\n", "")
     a.strip
   end
 end

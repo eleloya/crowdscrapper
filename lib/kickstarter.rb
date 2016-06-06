@@ -3,7 +3,7 @@ class KickStarterProject < Scrapper
   def initialize(url)
     super(url)
     url += "/description" 
-    @doc2 = Nokogiri::HTML(open(url))
+    @doc2 = Nokogiri::HTML(open(URI.encode(url)))
     @project_successful = @doc.search("//div[contains(concat(' ',normalize-space(@class), ' '), 'Project-state-successful ')]").count > 0
   end
 

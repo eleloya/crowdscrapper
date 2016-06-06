@@ -20,9 +20,6 @@ usage if url.nil?
 
 csv = ARGV[1]
 
-
-doc = open(url)
-
 if url.include? "fondeadora"
   scrap = FondeadoraProject.new(url)
 else
