@@ -97,7 +97,7 @@ class KickStarterProject < Scrapper
   def rewards_amount
     doc = @doc
     doc = @doc2 if @project_successful
-    doc.search("//h2[@class='pledge__amount']//h5/span/text()").map {|r| r.to_s }
+    doc.search("//h2[@class='pledge__amount']/span/span/text()").map {|r| r.to_s }
   end
 
   def rewards_words
