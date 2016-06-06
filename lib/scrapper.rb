@@ -141,8 +141,8 @@ class Scrapper
     a.gsub("Fondeadora","")
     a.gsub("-Kickstarter","")
     a.gsub("Kickstarter","")
-    a.gusb("\r", "")
-    a.gusb("\n", "")
+    a.gsub("\r", "")
+    a.gsub("\n", "")
     a.strip
   end
 end
