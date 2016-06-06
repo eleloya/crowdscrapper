@@ -5,6 +5,7 @@ require_relative 'lib/common'
 def usage
   puts <<-EOF
 usage: ./crowdscrapper.rb URL
+--csv [optional] 
 
 examples: 
 ./crowdscrapper.rb https://www.kickstarter.com/projects/180695797/enter-the-cave
@@ -17,6 +18,9 @@ end
 url = ARGV[0]
 usage if url.nil?
 
+csv = ARGV[1]
+
+
 doc = open(url)
 
 if url.include? "fondeadora"
@@ -25,4 +29,8 @@ else
   scrap = KickStarterProject.new(url)
 end
 
-scrap.description
+if csv
+  scrap.description_csv 
+else
+  scrap.description
+end

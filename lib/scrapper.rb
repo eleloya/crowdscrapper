@@ -111,13 +111,35 @@ class Scrapper
     puts "Number of videos: #{videos}"
     puts "Number of comments: #{comments}"
     puts "Number of updates: #{updates}"
-    puts "Number of Q/As: #{faqs}"
+    puts "Number of Q/As (Solo Kick): #{faqs}"
     puts "Number of rewards: #{rewards}"
     puts "Amount of rewards: #{rewards_amount}"
     puts "Word count in rewards: #{rewards_words}"
-    puts "Projects Created by User: #{projects_created}"
-    puts "Projects Backed by User: #{projects_backed}"
-    puts "Project Starting Date: #{start_date}"
+    puts "Projects Created by User (Solo Kick): #{projects_created}"
+    puts "Projects Backed by User (Solo Kick): #{projects_backed}"
+    puts "Project Starting Date (No es posible extraer): #{start_date}"
+  end
+  
+  def description_csv
+    # URL  | TITLE | CURRENCY | AMOUNT ASKED | AMOUNT RECEIVED | BACKERS | AVG AMOUNT | DAYS LEFT | LOC | CAT
+    # NWORD| NPICS | NVIDEOS  | NCOMMENTS    | NUPDATES        | NREWARDS| A REWARDS  | NWORDREWARDS
+    print url + "|" + clean(title) + "|" + currency.to_s + "|" + amount_asked.to_s + "|"  + amount_received.to_s + "|"
+    print backers.to_s + "|" + amount_average.to_s + "|" + time_left.to_s + "|" + location + "|" + category + "|"
+    print words.to_s + "|" + photos.to_s + "|" + videos.to_s + "|" + comments.to_s + "|" + updates.to_s + "|"
+    print rewards
+    print "|"
+    print rewards_amount.to_s[1..-2].gsub("\"","")
+    print "|" 
+    print rewards_words.to_s[1..-2].gsub("\"","")
+    print "\r\n"
+  end
+  
+  private 
+  
+  def clean(a)
+    a.gsub("|","")
+    a.gsub("Fondeadora","")
+    a.gsub("Kickstarter","")
   end
 end
   
